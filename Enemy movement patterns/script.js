@@ -4,7 +4,7 @@ const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 CANVAS_WIDTH = canvas.width = 500;
 CANVAS_HEIGHT = canvas.height = 1000;
-const numberOfEnemies = 10;
+const numberOfEnemies = 100;
 const enemiesArray = [];
 
 const enemyImage = new Image();
@@ -13,20 +13,19 @@ let gameFrame = 0;
 
 class Enemy {
   constructor() {
-    this.x = Math.random() * CANVAS_WIDTH;
-    this.y = Math.random() * CANVAS_HEIGHT;
-
-    this.speed = Math.random() * 4 - 2; /* -2 to 2 */
+    //this.speed = Math.random() * 4 - 2; /* -2 to 2 */
     this.spriteWidth = 293;
     this.spriteHeight = 155;
     this.width = this.spriteWidth / 2.5;
     this.height = this.spriteHeight / 2.5;
     this.frame = 0;
+    this.x = Math.random() * (CANVAS_WIDTH - this.width);
+    this.y = Math.random() * (CANVAS_HEIGHT - this.height);
     this.flepSpeed = Math.random() * 3 + 1;
   }
   update() {
-    this.x += this.speed;
-    this.y += this.speed;
+    this.x += Math.random() * 5 - 2.5;
+    this.y += Math.random() * 5 - 2.5;
     /* Frame animation */
     if (gameFrame % Math.floor(this.flepSpeed) === 0) {
       this.frame > 4 ? (this.frame = 0) : this.frame++;
